@@ -65,8 +65,8 @@
 				<lottie-player src="https://assets4.lottiefiles.com/packages/lf20_sjcbakkb.json"  background="transparent" style="position: relative; height: 230px; top: 50%; transform: translateY(-50%);" speed="1"  loop  autoplay></lottie-player>
 			</div>
 		</div>
-		<div class="go_top"><a href="#">맨 위로 가기</a></div>
 	</section>
+	<div class="go_top"><button class="go_top_btn">맨 위로 가기</button></div>
 	<!-- / END SECTION BLOG -->
 	<footer class="footer">
 		<span>Made by: 한가한 직장인 + Source: 나무위키 + Skill: Html,css,js</span>
@@ -186,6 +186,11 @@
 		observer.observe(listEnd);
 		const observer2 = new IntersectionObserver(listEndDesc, options);
 		observer2.observe(document.querySelector('.end_content'));
+
+		document.querySelector('.go_top_btn').addEventListener('click',function(){
+			console.log('클릭 이벤트 발생');
+			document.querySelector('body').scrollTo( 0,0 );
+		});
 
 	</script>
 
