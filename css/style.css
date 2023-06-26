@@ -93,6 +93,7 @@ a{
 
 .section-blog .single-blog ul li {
 	display: inline-block;
+    vertical-align: middle;
 }
 
 .section-blog .single-blog ul li {
@@ -284,4 +285,16 @@ footer{
     text-align: center;
     font-family: "Poppins", 'TheJamsil5Bold',sans-serif;
     word-break: keep-all;
+}
+
+@media all and (max-width:360px){
+    .section-blog .single-blog .content{
+        padding: 15px;
+    }
+    .section-blog .single-blog{
+        margin-left: 43px;
+    }
+    .section-blog .single-blog ul li{
+        max-width: 95px;
+    }
 }
