@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:500,700|Roboto:400,700&display=swap" rel="stylesheet">
 	<script src="./js/data.js"></script>
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
@@ -60,11 +61,14 @@
 			<div class="end_content">
 				<div class="end_txt">등록되어 있는 모든 버튜버를 봤어요!</div>
 			</div>
+			<div class="end_list">
+				<lottie-player src="https://assets4.lottiefiles.com/packages/lf20_sjcbakkb.json"  background="transparent" style="position: relative; height: 230px; top: 50%; transform: translateY(-50%);" speed="1"  loop  autoplay></lottie-player>
+			</div>
 		</div>
 		<div class="go_top"><a href="#">맨 위로 가기</a></div>
 	</section>
 	<!-- / END SECTION BLOG -->
-	<footer>
+	<footer class="footer">
 		<span>Made by: 한가한 직장인 + Source: 나무위키 + Skill: Html,css,js</span>
 	</footer>
 
@@ -75,6 +79,7 @@
 
 		let content
 		let contentList = [];
+		let styleList
 		function getNextContent(){
 			content = txtList.slice(paging,paging + 1)[0];
 			//console.log(content);
@@ -101,10 +106,16 @@
 				`)
 			document.querySelector('.contentBox').innerHTML = contentList.join('');
 			});
+
+			/* document.querySelectorAll('.single-blog').forEach((content,idx) => {
+				setTimeout(function(){
+					content.classList.add('loaded');
+				},500)
+			}); */
 		}
 		getNextContent();
 
-		window.addEventListener("scroll", ()=>{
+/* 		window.addEventListener("scroll", ()=>{
 			const scrollPos = window.innerHeight + window.scrollY;
 			const bodyHeight = document.body.offsetHeight;
 
@@ -114,11 +125,59 @@
 				getNextContent();
 			}else if(paging == pageIndex){
 				setTimeout(function(){
+					document.querySelector('.end_list').style.display = 'none'
 					document.querySelector('.end_content').style.transform = 'translateY(0)'
 					document.querySelector('.end_content').style.opacity = '1'
 				}, 500);
 			}
-		})
+		}) */
+
+		const listEnd = document.querySelector('.footer');
+		const options = {
+			root: null, // 뷰포트를 기준으로 타켓의 가시성 검사
+			rootMargin: '0px 0px 0px 0px', // 확장 또는 축소
+			threshold: 0, // 타켓의 가시성 0%일 때 옵저버 실행
+		};
+		const listAdd = (entries, observer) => {
+
+			/* entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					//화면에서 노출 됐을때 실행
+					console.log('화면에서 노출됨');
+				} else {
+					//화면에서 제외 됐을때 실행
+					console.log('화면에서 제외됨');
+				}
+			}); */
+
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					paging++
+					console.log(paging);
+					//다음 컨텐츠 노출 처리
+					setTimeout(function(){
+						getNextContent();
+						// 컨텐츠 불러오기
+					}, 300);
+
+				}
+			});
+
+			if(paging == pageIndex){
+				observer.unobserve(listEnd); // 특정 대상(요소)에 대한 관찰 중단
+
+				document.querySelector('.end_list').style.display = 'none'
+				setTimeout(function(){
+					document.querySelector('.end_content').style.transform = 'translateY(0)'
+					document.querySelector('.end_content').style.opacity = '1'
+				}, 1000);
+
+				return;
+			}
+		};
+
+		const observer = new IntersectionObserver(listAdd, options); //관찰자 초기화
+		observer.observe(listEnd);
 
 	</script>
 
