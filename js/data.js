@@ -75,7 +75,7 @@ const txt1 = [
         rull:'개인',
     },
     {
-        title: '7월 10일, 16일에 마기카로기아 시나리오 <그 저택의 문은 닫히지 않는다> 함께 가실 플레이어 한 분을 추가로 구인합니다! 자세한 사항은 이미지 확인해주시고 문의나 참여의사는 멘션으로 부탁드려요!',
+        title: 'APOKI만이 소화할 수 있는 콘셉트와 음악, 퍼포먼스로 독보적인 존재감을 보여주고 있다. 현재 YOUTUBE, TIKTOK, INSTAGRAM에서 약 400만명의 두터운 팬층을 보유하며, 다양한 모습으로 음악적 역량을 활발히 선보이고 있다.',
         date: '19.04.12',
         img:'https://i.namu.wiki/i/T9h1CQUedx9ZjD04DhGC1QI2LlyhIcxl2d9wdC8eEJYaUGjDhmuWDtd0Vzo2RJfRHG8ooUsDjp65sFBlAan68pAojFMZu_7yAm1ma5gz9SxEi8Q6JphLgWTW5kmjiKDfdJakTWPAlenDETYVlQXIHg.webp',
         writer:'아뽀키',
