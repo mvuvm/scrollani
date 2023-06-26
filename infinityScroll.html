@@ -167,17 +167,25 @@
 				observer.unobserve(listEnd); // 특정 대상(요소)에 대한 관찰 중단
 
 				document.querySelector('.end_list').style.display = 'none'
-				setTimeout(function(){
-					document.querySelector('.end_content').style.transform = 'translateY(0)'
-					document.querySelector('.end_content').style.opacity = '1'
-				}, 1000);
-
 				return;
 			}
 		};
 
+		const listEndDesc = (entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting && paging == pageIndex) {
+					setTimeout(function(){
+						document.querySelector('.end_content').style.transform = 'translateY(0)'
+						document.querySelector('.end_content').style.opacity = '1'
+					}, 300);
+				}
+			});
+		}
+
 		const observer = new IntersectionObserver(listAdd, options); //관찰자 초기화
 		observer.observe(listEnd);
+		const observer2 = new IntersectionObserver(listEndDesc, options);
+		observer2.observe(document.querySelector('.end_content'));
 
 	</script>
 
